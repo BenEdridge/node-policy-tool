@@ -1,0 +1,11 @@
+example
+.git
+.gitignore
+.nvmrc
+lib/
+example/
+
+#ignore all readme files
+**/*.md
+**/*.MD
+**/LICENSE

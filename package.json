@@ -1,0 +1,34 @@
+{
+  "name": "policy-tool",
+  "version": "1.0.0",
+  "description": "A simple NodeJS template for GitHub",
+  "main": "index.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "scripts": {
+    "start:non-secure": "node index.js",
+    "start:relaxed": "node --experimental-policy=policy.json index.js",
+    "start:strict": "node --experimental-policy=policy.json index.js",
+    "start:paranoid": "node --experimental-policy=policy.json --policy-integrity='sha512-ZtQsetef9uS5DPnyb+q4N/DpWLQbUZjfP2+a1U7Wal+ZyTkmZxv9GTbbHW/IiP3FgY47Vhd+GS4L4Vt9vlgk/g==' index.js",
+    "generate:policy": "node lib/lib.js",
+    "generate:docker_image": "docker build -t policy-tool:latest .",
+    "start:docker_image": "docker run --rm --read-only --tmpfs /run --tmpfs /tmp --tmpfs /var/log  -p 8080:8080 policy-tool",
+    "start:docker_image_interactive": "docker run -it --read-only --tmpfs /run --tmpfs /tmp --tmpfs /var/log  --entrypoint=sh policy-tool:latest",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenEdridge/node-policy-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenEdridge/node-policy-tool/issues"
+  },
+  "homepage": "https://github.com/BenEdridge/node-policy-tool#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
